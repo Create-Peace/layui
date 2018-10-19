@@ -1205,7 +1205,13 @@
       } else {
         that[startEnd] = dateTime;
       }
-      lay.each([24, 60, 60], function(i, item){
+      var arrTime = []
+      if (options.format === 'HH:mm') {
+        arrTime = [24, 60];
+      } else {
+        arrTime = [24, 60, 60]; // 显示时分秒
+      }
+      lay.each(arrTime, function(i, item){
         var li = lay.elem('li'), childUL = ['<p>'+ lang.time[i] +'</p><ol>'];
         lay.each(new Array(item), function(ii){
           childUL.push('<li'+ (that[startEnd][hms[i]] === ii ? ' class="'+ THIS +'"' : '') +'>'+ lay.digit(ii, 2) +'</li>');
