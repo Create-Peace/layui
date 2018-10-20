@@ -630,8 +630,11 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util'], function(exports){
         
     if(options.url){ //Ajax请求
       var params = {};
-      params[request.pageName] = curr;
-      params[request.limitName] = options.limit;
+      // 需要需要显示分页就需要将当前的参数扩展链接上
+      if (options.page) {
+        params[request.pageName] = curr;
+        params[request.limitName] = options.limit;
+      }
       
       //参数
       var data = $.extend(params, options.where);
@@ -1866,5 +1869,3 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util'], function(exports){
   
   exports(MOD_NAME, table);
 });
-
- 
