@@ -721,7 +721,9 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util'], function(exports){
         that.eachCols(function(i3, item3){
           var field = item3.field || i3
           ,key = options.index + '-' + item3.key
-          ,content = item1[field];
+          ,content = item1[field],
+          title = typeof content === 'string'? content : '';
+
           
           if(content === undefined || content === null) content = '';
           if(item3.colGroup) return;
@@ -743,7 +745,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util'], function(exports){
             if(!item3.field) classNames.push('layui-table-col-special'); //插入特殊列样式
             return classNames.join(' ');
           }() +'">'
-            ,'<div class="layui-table-cell laytable-cell-'+ function(){ //返回对应的CSS类标识
+            ,'<div title="'+ title +'" class="layui-table-cell laytable-cell-'+ function(){ //返回对应的CSS类标识
               return item3.type === 'normal' ? key 
               : (key + ' laytable-cell-' + item3.type);
             }() +'">' + function(){
